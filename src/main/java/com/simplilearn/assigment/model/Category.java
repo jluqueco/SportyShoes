@@ -1,5 +1,7 @@
 package com.simplilearn.assigment.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +15,7 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long categoryID;
 	private String description;
+	private Date dateAdded;
 	/**
 	 * @param description
 	 */
@@ -40,6 +43,12 @@ public class Category {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Date getDateAdded() {
+		return dateAdded;
+	}
+	public void setDateAdded(Date dateAdded) {
+		this.dateAdded = dateAdded;
 	}
 	@Override
 	public String toString() {

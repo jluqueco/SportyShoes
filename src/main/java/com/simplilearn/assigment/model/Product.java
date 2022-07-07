@@ -75,10 +75,10 @@ public class Product {
 	public void setDateAdded(Date dateAdded) {
 		this.dateAdded = dateAdded;
 	}
-	public Category getCategoryId() {
+	public Category getCategory() {
 		return category;
 	}
-	public void setCategoryId(Category categoryId) {
+	public void setCategory(Category categoryId) {
 		this.category = categoryId;
 	}
 	@Override

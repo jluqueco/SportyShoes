@@ -1,6 +1,6 @@
-insert into categories (description) values('Cycling');
-insert into categories (description) values('Baseball');
-insert into categories (description) values('Soccer');
+insert into categories (description, date_added) values('Cycling', curdate());
+insert into categories (description, date_added) values('Baseball', curdate());
+insert into categories (description, date_added) values('Soccer', curdate());
 
 insert into products (date_added, name, price, category_categoryid) values(curdate(), 'Cool Cycling Shoes', 100.02, 1);
 insert into products (date_added, name, price, category_categoryid) values(curdate(), 'Jordan', 450.99, 2);

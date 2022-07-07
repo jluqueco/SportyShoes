@@ -36,7 +36,7 @@ public class SportyShoesResources {
 	@GetMapping(path = "/users/{username}/products")
 	public List<Product> getAllProducts(@PathVariable String username){
 		List<Product> products = productService.findAll();
-		System.out.println("Username: " + username);
+		System.out.println("Username: " + username + " Method: getAllProducts()");
 		System.out.println(products);
 		return products;
 	}
@@ -44,9 +44,17 @@ public class SportyShoesResources {
 	@GetMapping(path = "/users/{username}/categories")
 	public List<Category> getAllCategories(@PathVariable String username){
 		List<Category> categories = categoryService.findAll();
-		System.out.println("Username: " + username);
+		System.out.println("Username: " + username + " Method: getAllCategories()");
 		System.out.println(categories);
 		return categories;
+	}
+	
+	@GetMapping(path = "/users/{username}/users")
+	public List<User> getAllUsers(@PathVariable String username){
+		List<User> users = userService.findAll();
+		System.out.println("Username: " + username + " Method: getAllUsers()");
+		System.out.println(users);
+		return users;
 	}
 	
 	@PostMapping(path = "/users/{username}")
