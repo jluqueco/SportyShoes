@@ -5,7 +5,7 @@
 
 <html>
 	<head>
-		<title>Save Todos</title>
+		<title>Products</title>
 		<link type="text/css" rel="stylesheet" href="${pageContect.request.contextPath}/resources/css/style.css">
 		
 		<link type="text/css" rel="stylesheet" href="${pageContect.request.contextPath}/resources/css/add-todo-style.css">
@@ -15,31 +15,34 @@
 	
 		<div id = "wrapper">
 			<div id = "header">
-			<h2>List Todos</h2>
+			<h2>Save Product</h2>
 			</div>
 		</div>
 		
 		<div id = "container">
-			<h3>Save Todo</h3>
+			<h3>Save Product</h3>
 			
-			<form:form action="saveTodos" modelAttribute="todos" method="post">
-				<form:hidden path="id"/>
+			<form:form action="saveProducts" modelAttribute="products" method="post">
+				<form:hidden path="ID"/>
 				
 				<table>
 					<tbody>
 						<tr>
-							<td><label>Description: </label></td>
-							<td><form:input path="description"/></td>
-						</tr>
-						
-						<tr>
-							<td><label>Target Date: </label></td>
-							<fmt:formatDate value="${todos.targetDate}" var="dates" pattern="dd/MM/yyyy"/>
-							<td><form:input path="targetDate" value="${dates}"/></td>
+							<td><label>Name: </label></td>
+							<td><form:input path="name"/></td>
 						</tr>
 						<tr>
-							<td><label>is Done? </label></td>
-							<td><form:input path="isDone"/></td>
+							<td><label>Price: </label></td>
+							<td><form:input path="price"/></td>
+						</tr>
+						<tr>
+							<td><label>Category: </label></td>
+							<td><form:input path="category"/></td>
+						</tr>
+						<tr>
+							<td><label>Date Added: </label></td>
+							<fmt:formatDate value="${products.dateAdded}" var="dates" pattern="dd/MM/yyyy"/>
+							<td><form:input path="dateAdded" value="${dates}"/></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -50,7 +53,7 @@
 			</form:form>
 			<div style="clear; both;"></div>
 			<p>
-				<a href="${pageContext.request.contextPath}/users/todos">Back to List</a>
+				<a href="${pageContext.request.contextPath}/users/products">Back to List</a>
 			</p>
 		</div>
 		 

@@ -75,27 +75,29 @@ public class SportyShoesController {
 		return modelAndView;
 	}
 	
-//	@GetMapping(path="/users/todos/showFormForAdd")
-//	public ModelAndView showFormForAddTodos() {
-//		System.out.println("Entering showFormForAddTodos");
-//		ModelAndView modelAndView = new ModelAndView("todos-form");
-//		
-//		Todo theTodo = new Todo();
-//		
-//		modelAndView.addObject("todos", theTodo);
-//		
-//		return modelAndView;
-//	}
-//	
-//	@PostMapping(path="/users/todos/saveTodos")
-//	public ModelAndView saveTodo(@ModelAttribute("todos") Todo theTodo) {
-//		System.out.println("Entering saveTodo");
-//		ModelAndView modelAndView = new ModelAndView("redirect:/users/todos");
-//		theTodo.setUsername("vinodh");
-//		restTemplate.postForObject(BASE_URL, theTodo, Todo.class);
-//		
-//		return modelAndView;
-//	}
+	
+	
+	@GetMapping(path="/users/products/showFormForAdd")
+	public ModelAndView showFormForAddProducts() {
+		System.out.println("Entering showFormForAddProducts");
+		ModelAndView modelAndView = new ModelAndView("products-form");
+		
+		Product theProduct = new Product();
+		
+		modelAndView.addObject("products", theProduct);
+		
+		return modelAndView;
+	}
+	
+	@PostMapping(path="/products/saveProducts")
+	public ModelAndView saveProduct(@ModelAttribute("products") Product theProduct) {
+		System.out.println("Entering saveProduct with " + theProduct);
+		ModelAndView modelAndView = new ModelAndView("redirect:/users/products");
+		
+		restTemplate.postForObject("http://localhost:8080/users/newproduct", theProduct, Product.class);
+		
+		return modelAndView;
+	}
 //	
 //	@GetMapping(path="/users/todos/showFormForUpdate")
 //	public ModelAndView showFormForUpdateTodos(@RequestParam("todoId") Long theId, Model theModel) {
