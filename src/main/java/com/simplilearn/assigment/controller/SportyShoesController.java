@@ -89,12 +89,34 @@ public class SportyShoesController {
 		return modelAndView;
 	}
 	
-	@PostMapping(path="/products/saveProducts")
+	@PostMapping(path="users/products/saveProducts")
 	public ModelAndView saveProduct(@ModelAttribute("products") Product theProduct) {
 		System.out.println("Entering saveProduct with " + theProduct);
 		ModelAndView modelAndView = new ModelAndView("redirect:/users/products");
 		
 		restTemplate.postForObject("http://localhost:8080/users/newproduct", theProduct, Product.class);
+		
+		return modelAndView;
+	}
+	
+	@GetMapping(path="/users/users/showFormForAdd")
+	public ModelAndView showFormForAddUsers() {
+		System.out.println("Entering showFormForAddUsers");
+		ModelAndView modelAndView = new ModelAndView("users-form");
+		
+		User theUser= new User();
+		
+		modelAndView.addObject("users", theUser);
+		
+		return modelAndView;
+	}
+	
+	@PostMapping(path="/users/users/saveUsers")
+	public ModelAndView saveUser(@ModelAttribute("users") User theUser) {
+		System.out.println("Entering saveUser with " + theUser);
+		ModelAndView modelAndView = new ModelAndView("redirect:/users/users");
+		
+		restTemplate.postForObject("http://localhost:8080/users/newuser", theUser, User.class);
 		
 		return modelAndView;
 	}

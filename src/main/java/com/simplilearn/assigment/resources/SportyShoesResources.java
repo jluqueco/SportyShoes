@@ -69,8 +69,18 @@ public class SportyShoesResources {
 	
 	@PostMapping(path = "/users/newproduct")
 	public ResponseEntity createProduct(@Valid @RequestBody Product theProduct) {
-		System.out.println("creating Product: " + theProduct.getName());
+		System.out.println("creating Product: " + theProduct.getCategory());
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(productService.save(theProduct).getID()).toUri();
+		
+		System.out.println(location.toString());
+		
+		return ResponseEntity.created(location).build();
+	}
+	
+	@PostMapping(path = "/users/newuser")
+	public ResponseEntity createUser(@Valid @RequestBody User theUser) {
+		System.out.println("creating User: " + theUser.getName());
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userService.save(theUser).getUserID()).toUri();
 		
 		System.out.println(location.toString());
 		

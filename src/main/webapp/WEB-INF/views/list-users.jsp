@@ -19,7 +19,7 @@
 		
 		<div id = "container">
 			<div id = "content">
-				<input type="button" value="Add Product" onClick="window.location.href='/users/products/showFormForAdd'; return false;"class="add-button">
+				<input type="button" value="Add User" onClick="window.location.href='/users/users/showFormForAdd'; return false;"class="add-button">
 				
 				<p></p>
 				

@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PRODUCTS")
+@Table (name = "PRODUCTS")
 public class Product {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,9 +25,10 @@ public class Product {
 	@OneToOne(
 			fetch = FetchType.EAGER,
 			optional = false,
-			cascade = CascadeType.PERSIST
+			cascade = CascadeType.REMOVE
 	)
-	@JoinColumn(unique = true)
+	
+	@JoinColumn(unique = false)
 	private Category category;
 	
 	
