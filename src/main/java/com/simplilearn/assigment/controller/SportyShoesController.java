@@ -120,38 +120,103 @@ public class SportyShoesController {
 		
 		return modelAndView;
 	}
-//	
-//	@GetMapping(path="/users/todos/showFormForUpdate")
-//	public ModelAndView showFormForUpdateTodos(@RequestParam("todoId") Long theId, Model theModel) {
-//		System.out.println("Entering showFormForUpdateTodos");
-//		
-//		Map<String, Long> params = new HashMap<>();
-//		params.put("theId", theId);
-//		
-//		Todo theTodo = restTemplate.getForObject(BASE_URL + "/{theId}", Todo.class, params);
-//		theModel.addAttribute("todos", theTodo);
-//		return new ModelAndView("todos-form");
-//	}
-//	
-//	@GetMapping(path="/users/todos/delete")
-//	public ModelAndView deleteTodos(@RequestParam("todoId") Long theId) {
-//		System.out.println("Entering deleteTodos");
-//		
-//		Map<String, Long> params = new HashMap<>();
-//		params.put("theId", theId);
-//		
-//		restTemplate.delete(BASE_URL + "/{theId}", params);
-//		
-//		ResponseEntity<List<Todo>> responseEntity = restTemplate.exchange(BASE_URL, HttpMethod.GET,null,new ParameterizedTypeReference<List<Todo>>() {
-//		});
-//		
-//		List<Todo> todos = responseEntity.getBody();
-//		
-//		ModelAndView modelAndView = new ModelAndView("list-todos");
-//		
-//		modelAndView.addObject("todos",todos);
-//		
-//		return modelAndView;
-//	}
+	
+	@GetMapping(path="/users/categories/showFormForAdd")
+	public ModelAndView showFormForAddCategories() {
+		System.out.println("Entering showFormForAddCategories");
+		ModelAndView modelAndView = new ModelAndView("categories-form");
+		
+		Category theCategory= new Category();
+		
+		modelAndView.addObject("categories", theCategory);
+		
+		return modelAndView;
+	}
+	
+	@PostMapping(path="/users/categories/saveCategories")
+	public ModelAndView saveCategory(@ModelAttribute("categories") Category theCategory) {
+		System.out.println("Entering saveCategory with " + theCategory);
+		ModelAndView modelAndView = new ModelAndView("redirect:/users/categories");
+		
+		restTemplate.postForObject("http://localhost:8080/users/newcategory", theCategory, Category.class);
+		
+		return modelAndView;
+	}
+	
+	
+	@GetMapping(path="/users/categories/showFormForUpdate")
+	public ModelAndView showFormForUpdateCategories(@RequestParam("categoryId") Long theId, Model theModel) {
+		System.out.println("Entering showFormForUpdateCategory");
+		
+		Map<String, Long> params = new HashMap<>();
+		params.put("theId", theId);
+		
+		Category theCategory = restTemplate.getForObject("http://localhost:8080/users/jluqueco/categories" + "/{theId}", Category.class, params);
+		theModel.addAttribute("categories", theCategory);
+		return new ModelAndView("categories-form");
+	}
+	
+	@GetMapping(path="/users/categories/delete")
+	public ModelAndView deleteCategories(@RequestParam("categoryId") Long theId) {
+		System.out.println("Entering deleteCategories");
+		
+		Map<String, Long> params = new HashMap<>();
+		params.put("theId", theId);
+		
+		restTemplate.delete("http://localhost:8080/users/jluqueco/categories"  + "/{theId}", params);
+		
+		return listOfCategories();
+		
+	}
+	
+	@GetMapping(path="/users/products/showFormForUpdate")
+	public ModelAndView showFormForUpdateProducts(@RequestParam("productId") Long theId, Model theModel) {
+		System.out.println("Entering showFormForUpdateProduct");
+		
+		Map<String, Long> params = new HashMap<>();
+		params.put("theId", theId);
+		
+		Product theProduct = restTemplate.getForObject("http://localhost:8080/users/jluqueco/products" + "/{theId}", Product.class, params);
+		theModel.addAttribute("products", theProduct);
+		return new ModelAndView("products-form");
+	}
+	
+	@GetMapping(path="/users/products/delete")
+	public ModelAndView deleteProducts(@RequestParam("productId") Long theId) {
+		System.out.println("Entering deleteProducts");
+		
+		Map<String, Long> params = new HashMap<>();
+		params.put("theId", theId);
+		
+		restTemplate.delete("http://localhost:8080/users/jluqueco/products"  + "/{theId}", params);
+		
+		return listOfProducts();
+		
+	}
+	
+	@GetMapping(path="/users/users/showFormForUpdate")
+	public ModelAndView showFormForUpdateUser(@RequestParam("userId") Long theId, Model theModel) {
+		System.out.println("Entering showFormForUpdateUser");
+		
+		Map<String, Long> params = new HashMap<>();
+		params.put("theId", theId);
+		
+		User theUser = restTemplate.getForObject("http://localhost:8080/users/jluqueco/users" + "/{theId}", User.class, params);
+		theModel.addAttribute("users", theUser);
+		return new ModelAndView("users-form");
+	}
+	
+	@GetMapping(path="/users/categories/delete")
+	public ModelAndView deleteUsers(@RequestParam("userId") Long theId) {
+		System.out.println("Entering deleteUsers");
+		
+		Map<String, Long> params = new HashMap<>();
+		params.put("theId", theId);
+		
+		restTemplate.delete("http://localhost:8080/users/jluqueco/users"  + "/{theId}", params);
+		
+		return listOfUsers();
+		
+	}
 		
 }

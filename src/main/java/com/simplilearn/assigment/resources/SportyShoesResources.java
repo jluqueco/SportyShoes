@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.simplilearn.assigment.errors.CategoryErrorException;
 import com.simplilearn.assigment.model.Category;
 import com.simplilearn.assigment.model.Product;
 import com.simplilearn.assigment.model.User;
@@ -47,6 +49,17 @@ public class SportyShoesResources {
 		System.out.println("Username: " + username + " Method: getAllCategories()");
 		System.out.println(categories);
 		return categories;
+	}
+	
+	@GetMapping(path = "/users/{username}/categories/{id}")
+	public Category getCategory(@PathVariable String username, @PathVariable long id) {
+		Category theCategory = categoryService.findById(id);
+		
+		if(theCategory == null) {
+			throw new CategoryErrorException("id + " + id);
+		}
+		
+		return theCategory;
 	}
 	
 	@GetMapping(path = "/users/{username}/users")
@@ -85,5 +98,22 @@ public class SportyShoesResources {
 		System.out.println(location.toString());
 		
 		return ResponseEntity.created(location).build();
+	}
+	
+	@PostMapping(path = "/users/newcategory")
+	public ResponseEntity createCategory(@Valid @RequestBody Category theCategory) {
+		System.out.println("creating Category: " + theCategory.getDescription());
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoryService.save(theCategory).getCategoryID()).toUri();
+		
+		System.out.println(location.toString());
+		
+		return ResponseEntity.created(location).build();
+	}
+	
+	@DeleteMapping(path = "/users/{username}/categories/{id}")
+	public ResponseEntity deleteCategory(@PathVariable String username, @PathVariable long id) {
+		categoryService.deleteById(id);
+		
+		return ResponseEntity.noContent().build();
 	}
 }

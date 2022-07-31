@@ -19,7 +19,7 @@
 		
 		<div id = "container">
 			<div id = "content">
-				<input type="button" value="Add Product" onClick="window.location.href='/users/categories/showFormForAdd'; return false;"class="add-button">
+				<input type="button" value="Add Category" onClick="window.location.href='/users/categories/showFormForAdd'; return false;"class="add-button">
 				
 				<p></p>
 				
@@ -36,7 +36,7 @@
 						</c:url>
 						
 						<c:url var="deleteLink" value="/users/categories/delete">
-							<c:param name="categoriesId" value="${tempCategory.categoryID}"/>
+							<c:param name="categoryId" value="${tempCategory.categoryID}"/>
 						</c:url>
 						
 						<tr>

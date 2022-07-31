@@ -27,7 +27,6 @@
 				
 				<table>
 					<tbody>
-						<
 						<tr>
 							<td><label>Description: </label></td>
 							<td><form:input path="description"/></td>
